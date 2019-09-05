@@ -4,6 +4,8 @@ import {ChangeDetectorRef, OnDestroy} from '@angular/core';
 import { ListServiceService } from '../services/list-service.service';
 import { Task } from '../classes/Task';
 import { List } from '../classes/List';
+import { AngularWaitBarrier } from 'blocking-proxy/built/lib/angular_wait_barrier';
+import { element } from 'protractor';
 
 @Component({
   selector: 'app-other-lists',
@@ -13,12 +15,12 @@ import { List } from '../classes/List';
 export class OtherListsComponent implements OnInit {
 
   ngOnInit() {
+    this.get_lists();
   }
 
-  tasks : Task[]
-  lists : List[]
+  tasks : Task[] = []
+  lists : List[] = []
 
-  mobileQuery: MediaQueryList;
 
   fillerNav = Array.from({length: 50}, (_, i) => `Nav Item ${i + 1}`);
 
@@ -29,19 +31,17 @@ export class OtherListsComponent implements OnInit {
        voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat
        cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.`);
 
-  private _mobileQueryListener: () => void;
 
-  constructor(changeDetectorRef: ChangeDetectorRef, media: MediaMatcher, public listService : ListServiceService) {
-    this.mobileQuery = media.matchMedia('(max-width: 600px)');
-    this._mobileQueryListener = () => changeDetectorRef.detectChanges();
-    this.mobileQuery.addListener(this._mobileQueryListener);
+  constructor(public listService : ListServiceService) {}
+
+
+  get_lists() {
+    this.listService.get_all_lists()
+    .subscribe(_lists => this.lists = _lists)
+    console.log(this.lists);
   }
 
-  // ngOnDestroy(): void {
-  //   this.mobileQuery.removeListener(this._mobileQueryListener);
-  // }
-
-  test() {
-    this.listService.get_all_lists()
+  list_routing_handler(title : string) {
+    this.listService.list_handler(title)
   }
 }

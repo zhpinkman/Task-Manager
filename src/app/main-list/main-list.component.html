@@ -1,1 +1,19 @@
-<p>main-list works!</p>
+<div class="example-container">
+    <mat-toolbar color="primary" class="example-toolbar">
+      <button mat-icon-button (click)="snav.toggle()"><mat-icon>menu</mat-icon></button>
+      <h1 class="example-app-name" >Responsive App</h1>
+    </mat-toolbar>
+  
+    <mat-sidenav-container class="example-sidenav-container">
+      <mat-sidenav #snav>
+        <mat-nav-list>
+          <a mat-list-item routerLink="." (click)="list_routing_handler(list.title)" *ngFor="let list of lists">{{list.title}}</a>
+        </mat-nav-list>
+      </mat-sidenav>
+  
+      <mat-sidenav-content>
+        <p *ngFor="let content of fillerContent">{{content}}</p>
+      </mat-sidenav-content>
+    </mat-sidenav-container>
+  </div>
+
