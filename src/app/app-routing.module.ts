@@ -1,23 +1,22 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { DoneComponent } from './done/done.component';
-import { ToDosComponent } from './to-dos/to-dos.component';
+import { OtherListsComponent } from './other-lists/other-lists.component';
+import { MainListComponent} from './main-list/main-list.component'
 
 
 const routes: Routes = [
   {
-    path: 'done',
-    component: DoneComponent
+    path : 'done',
+    component : DoneComponent
   },
   {
-    path: 'my-lists',
-    children: 
-    [
-      {
-        path: '**',
-        component: ToDosComponent
-      }
-    ]
+    path : 'mainList',
+    component : MainListComponent
+  },
+  {
+    path : '**',
+    component : OtherListsComponent
   }
 ];
 
