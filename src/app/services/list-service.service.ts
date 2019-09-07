@@ -14,6 +14,7 @@ let getListAPI = 'http://localhost:3000/api/lists'
 })
 export class ListServiceService {
   constructor(private http: HttpClient, private router : Router) { }
+  current_list : string
 
   get_all_lists() : Observable<List[]> {
     return this.http.get<List[]>(getListAPI)
@@ -26,5 +27,22 @@ export class ListServiceService {
       this.router.navigate(['mainList'])
       console.log("testing");
     }
+  }
+
+  get_current_list() {
+    let x = this.router.url
+    // console.log("zhivar");
+    // console.log(this.router.url);
+    let y = x.substr(1,x.length)
+    // console.log(y);
+    let i = y.indexOf('/')
+    if (i == -1){
+      i = y.length
+      this.current_list = y.substr(0, i)
+    }
+    else  
+      this.router.navigate(['mainList'])
+    
+    // console.log("final" + z);
   }
 }

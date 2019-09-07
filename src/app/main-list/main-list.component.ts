@@ -14,6 +14,7 @@ export class MainListComponent implements OnInit {
   lists : List[] = []
 
   ngOnInit() {
+    this.listService.get_current_list()
     this.get_lists()
   }
 

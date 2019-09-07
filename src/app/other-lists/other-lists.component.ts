@@ -15,6 +15,7 @@ import { element } from 'protractor';
 export class OtherListsComponent implements OnInit {
 
   ngOnInit() {
+    this.listService.get_current_list()
     this.get_lists();
     this.get_tasks();
   }
@@ -30,8 +31,6 @@ export class OtherListsComponent implements OnInit {
     }
   }
 
-
-  current_list : string
   tasks : Task[] = []
   lists : List[] = []
 
