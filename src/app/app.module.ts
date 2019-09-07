@@ -14,6 +14,7 @@ import {MatToolbarModule} from '@angular/material/toolbar';
 import {MatIconModule} from '@angular/material/icon';
 import {MatListModule} from '@angular/material/list';
 import { HttpClientModule } from '@angular/common/http';
+import { AngularFontAwesomeModule } from 'angular-font-awesome';
 
 
 
@@ -26,6 +27,7 @@ import { HttpClientModule } from '@angular/common/http';
     MainListComponent
   ],
   imports: [
+    AngularFontAwesomeModule,
     HttpClientModule,
     MatListModule,
     MatIconModule,

@@ -12,7 +12,9 @@
       </mat-sidenav>
   
       <mat-sidenav-content>
-        <p *ngFor="let content of fillerContent">{{content}}</p>
+        <div class="row no-gutters all-items-box all-files-folders">
+          <app-task class="col-auto h-100"  *ngFor="let task of tasks" [value]="task"></app-task>
+        </div>
       </mat-sidenav-content>
     </mat-sidenav-container>
   </div>

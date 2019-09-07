@@ -16,11 +16,24 @@ export class OtherListsComponent implements OnInit {
 
   ngOnInit() {
     this.get_lists();
+    this.get_tasks();
   }
 
+  get_tasks() {
+    let list : List
+    for (let i  = 0; i < this.lists.length; i++)
+      if (this.lists[i].title == "test")
+        list = this.lists[i]
+    for (let index = 0; index < 10; index++) {
+      let task = new Task("title", "description description descriptiondescriptiondescriptiondescription descriptiondescription description description", list)
+      this.tasks.push(task)
+    }
+  }
+
+
+  current_list : string
   tasks : Task[] = []
   lists : List[] = []
-
 
   fillerNav = Array.from({length: 50}, (_, i) => `Nav Item ${i + 1}`);
 

@@ -1,4 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
+import { Task } from '../classes/Task';
+import { TaskServiceService } from '../services/task-service.service';
 
 @Component({
   selector: 'app-task',
@@ -6,8 +8,9 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./task.component.scss']
 })
 export class TaskComponent implements OnInit {
-
-  constructor() { }
+  @Input('value')
+  task: Task;
+  constructor(private taskService : TaskServiceService) { }
 
   ngOnInit() {
   }
