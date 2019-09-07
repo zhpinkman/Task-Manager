@@ -21,6 +21,7 @@ p {
 
   .task-container {
     transition: all 0.3s;
+    cursor: default;
 
     .task-name {
       font-style: 18px;
@@ -34,8 +35,6 @@ p {
 
   &:hover {
     box-shadow: inset 0 0 0 2px #c1c9c9;
-    margin: 13px 20px 0 5px;
-    transition: all 0.3s;
   }
 }
 
@@ -63,4 +62,23 @@ p {
   padding: 10px;
   line-height: 22px;
   height: 100%;
+}
+
+
+.done-icon{
+    cursor: pointer;
+    position: relative;
+    top: -10px;
+    left: -8px;
+    width: 0;
+    height: 0;
+    font-size: 20px;
+}
+
+.my-centered-dialog {
+  max-width: 80vw;
+
+  .mat-dialog-container {
+    max-width: none;
+  }
 }

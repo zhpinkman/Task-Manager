@@ -1,0 +1,17 @@
+<mat-form-field>
+    <input class="task-title" matInput [(ngModel)]="task.title" value="task.title">
+</mat-form-field>
+<div mat-dialog-content>
+  <mat-form-field>
+    <input matInput [(ngModel)]="task.description" value="task.description">
+  </mat-form-field>
+</div>
+<div mat-dialog-actions>
+  <button mat-button (click)="onNoClick()">No Thanks</button>
+  <button mat-button cdkFocusInitial>Ok</button>
+</div>
+
+
+<!-- Copyright 2019 Google Inc. All Rights Reserved.
+    Use of this source code is governed by an MIT-style license that
+    can be found in the LICENSE file at http://angular.io/license -->

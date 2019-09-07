@@ -1,0 +1,25 @@
+.my-centered-dialog {
+    max-width: 80vw;
+  
+    .mat-dialog-container {
+      max-width: none;
+    }
+}
+
+
+input{
+    outline: none;
+    width: 100%;
+    border: none;
+    border-bottom: 1px solid black;
+    padding-bottom: 10px;
+}
+
+.mat-form-field{
+    width: 100%;
+}
+
+.task-title{
+    font-weight: bold;
+    font-size: 25px;
+}

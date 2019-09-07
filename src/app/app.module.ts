@@ -15,6 +15,12 @@ import {MatIconModule} from '@angular/material/icon';
 import {MatListModule} from '@angular/material/list';
 import { HttpClientModule } from '@angular/common/http';
 import { AngularFontAwesomeModule } from 'angular-font-awesome';
+import {MatDialogModule} from '@angular/material/dialog';
+import { OpenedTaskComponent } from './opened-task/opened-task.component';
+import {MatFormFieldModule} from '@angular/material/form-field';
+import { FormsModule } from '@angular/forms';
+
+
 
 
 
@@ -24,9 +30,13 @@ import { AngularFontAwesomeModule } from 'angular-font-awesome';
     DoneComponent,
     TaskComponent,
     OtherListsComponent,
-    MainListComponent
+    MainListComponent,
+    OpenedTaskComponent
   ],
   imports: [
+    FormsModule,
+    MatFormFieldModule,
+    MatDialogModule,
     AngularFontAwesomeModule,
     HttpClientModule,
     MatListModule,
@@ -40,6 +50,7 @@ import { AngularFontAwesomeModule } from 'angular-font-awesome';
     AppRoutingModule
   ],
   providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
+  entryComponents:[OpenedTaskComponent]
 })
 export class AppModule { }

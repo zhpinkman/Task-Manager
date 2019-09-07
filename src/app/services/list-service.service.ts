@@ -27,6 +27,9 @@ export class ListServiceService {
       this.router.navigate(['mainList'])
       console.log("testing");
     }
+    else if (title == "compeleted"){
+      // todo 
+    }
     else{
       console.log(title)
       this.router.navigate([title])
