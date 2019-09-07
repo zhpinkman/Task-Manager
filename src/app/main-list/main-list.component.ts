@@ -14,7 +14,7 @@ export class MainListComponent implements OnInit {
   lists : List[] = []
 
   ngOnInit() {
-    this.listService.get_current_list()
+    console.log("zhivar");
     this.get_lists()
   }
 
@@ -32,10 +32,9 @@ export class MainListComponent implements OnInit {
   get_lists() {
     this.listService.get_all_lists()
     .subscribe(_lists => this.lists = _lists)
-    console.log(this.lists)
   }
 
-  list_routing_handler(title : string) {
-    this.listService.list_handler(title)
+  go_to_list(title : string) {
+    this.listService.get_list(title)
   }
 }

@@ -15,22 +15,31 @@ import { element } from 'protractor';
 export class OtherListsComponent implements OnInit {
 
   ngOnInit() {
-    this.listService.get_current_list()
+    this.valid_list = false
+    this.listService.update_current_list()
     this.get_lists();
-    this.get_tasks();
+    // this.get_tasks();
   }
 
   get_tasks() {
     let list : List
-    for (let i  = 0; i < this.lists.length; i++)
-      if (this.lists[i].title == "test")
+    console.log(this.lists.length);
+    for (let i  = 0; i < this.lists.length; i++){
+      console.log(this.lists[i].title + " " + this.listService.current_list);
+      if (this.lists[i].title == this.listService.current_list){
         list = this.lists[i]
+        this.valid_list = true
+      } 
+    }
+    if (!this.valid_list)
+      this.go_to_list("mainList")
     for (let index = 0; index < 10; index++) {
       let task = new Task("title", "description description descriptiondescriptiondescriptiondescription descriptiondescription description description", list)
       this.tasks.push(task)
     }
   }
 
+  valid_list : boolean
   tasks : Task[] = []
   lists : List[] = []
 
@@ -49,11 +58,13 @@ export class OtherListsComponent implements OnInit {
 
   get_lists() {
     this.listService.get_all_lists()
-    .subscribe(_lists => this.lists = _lists)
-    console.log(this.lists);
+    .subscribe(_lists => {
+      this.lists = _lists
+      this.get_tasks()
+    })
   }
 
-  list_routing_handler(title : string) {
-    this.listService.list_handler(title)
+  go_to_list(title : string) {
+    this.listService.get_list(title)
   }
 }
