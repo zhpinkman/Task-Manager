@@ -1,0 +1,27 @@
+<mat-accordion class="example-headers-align">
+    <mat-expansion-panel hideToggle>
+        <mat-expansion-panel-header>
+        <mat-panel-title>
+            Personal data
+        </mat-panel-title>
+        <mat-panel-description>
+            Type your name and age
+            <mat-icon (click)="onSubmit(new_task.value)">account_circle</mat-icon>
+        </mat-panel-description>
+        </mat-expansion-panel-header>
+    
+        <form [formGroup]="new_task" (ngSubmit)="onSubmit(new_task.value)">
+        <mat-form-field>
+            <input matInput formControlName="title"  placeholder="Title" required>
+        </mat-form-field>
+        <mat-form-field>
+            <textarea matInput formControlName="description" placeholder="Description"></textarea>
+        </mat-form-field>
+        <mat-form-field>
+            <input matInput formControlName="date" [matDatepicker]="picker" placeholder="Choose a date">
+            <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+            <mat-datepicker #picker></mat-datepicker>
+        </mat-form-field>
+        </form>
+    </mat-expansion-panel>
+</mat-accordion>

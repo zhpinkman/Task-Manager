@@ -19,6 +19,16 @@ import {MatDialogModule} from '@angular/material/dialog';
 import { OpenedTaskComponent } from './opened-task/opened-task.component';
 import {MatFormFieldModule} from '@angular/material/form-field';
 import { FormsModule } from '@angular/forms';
+import {MatExpansionModule} from '@angular/material/expansion';
+import {MatDatepickerModule} from '@angular/material/datepicker';
+import { MatNativeDateModule } from '@angular/material'
+import { NewTaskComponent } from './new-task/new-task.component';
+import { ReactiveFormsModule } from '@angular/forms';
+import {MatInputModule} from '@angular/material/input';
+
+
+
+
 
 
 
@@ -31,11 +41,17 @@ import { FormsModule } from '@angular/forms';
     TaskComponent,
     OtherListsComponent,
     MainListComponent,
-    OpenedTaskComponent
+    OpenedTaskComponent,
+    NewTaskComponent
   ],
   imports: [
+    MatNativeDateModule,
+    ReactiveFormsModule,
+    MatDatepickerModule,
+    MatExpansionModule,
     FormsModule,
     MatFormFieldModule,
+    MatInputModule,
     MatDialogModule,
     AngularFontAwesomeModule,
     HttpClientModule,
@@ -49,7 +65,9 @@ import { FormsModule } from '@angular/forms';
     BrowserModule,
     AppRoutingModule
   ],
-  providers: [],
+  providers: [
+    MatDatepickerModule
+  ],
   bootstrap: [AppComponent],
   entryComponents:[OpenedTaskComponent]
 })

@@ -33,10 +33,6 @@ export class OtherListsComponent implements OnInit {
     if (!this.valid_list)
       this.go_to_list("mainList")
     this.get_tasks_of_list(list)
-    // for (let index = 0; index < 10; index++) {
-    //   let task = new Task("title", "description description descriptiondescriptiondescriptiondescription descriptiondescription description description", list)
-    //   this.tasks.push(task)
-    // }
   }
 
   get_tasks_of_list(list : List){
@@ -53,14 +49,6 @@ export class OtherListsComponent implements OnInit {
   tasks : Task[] = []
   lists : List[] = []
 
-  fillerContent = Array.from({length: 50}, () =>
-      `Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut
-       labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco
-       laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in
-       voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat
-       cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.`);
-
-
   constructor(public listService : ListServiceService) {}
 
 
@@ -76,5 +64,19 @@ export class OtherListsComponent implements OnInit {
 
   go_to_list(title : string) {
     this.listService.get_list(title)
+  }
+
+  step = 0;
+
+  setStep(index: number) {
+    this.step = index;
+  }
+
+  nextStep() {
+    this.step++;
+  }
+
+  prevStep() {
+    this.step--;
   }
 }
