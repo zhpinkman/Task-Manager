@@ -20,6 +20,7 @@ export class NewTaskComponent implements OnInit {
       description : this.description,
       date : this.date
     })
+    console.log("I'm here");
   }
 
   task : Task

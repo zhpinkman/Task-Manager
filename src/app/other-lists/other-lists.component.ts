@@ -15,13 +15,9 @@ import { FormGroup, FormControl } from '@angular/forms';
 })
 export class OtherListsComponent implements OnInit {
 
-  ngOnChanges() {
-    console.log("change");
-    this.listService.update_current_list()
-    this.get_lists_and_tasks();
-  }
 
   ngOnInit() {
+    this.listService.is_done = false
     console.log("init");
     this.listService.update_current_list()
     this.get_lists_and_tasks();
@@ -81,6 +77,6 @@ export class OtherListsComponent implements OnInit {
 
   go_to_list(title : string) {
     this.listService.get_list(title)
-    window.location.reload()
+    // window.location.reload()
   }
 }

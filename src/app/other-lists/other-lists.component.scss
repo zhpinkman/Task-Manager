@@ -29,11 +29,15 @@
        `<body>` to be our scrolling element for mobile layouts. */
     flex: 1 0 auto;
   }
+
+
   
 
 .all-files-folders {
   justify-content: flex-start;
-  margin: 0 0 0 60px;
+  margin: 20px 0 0 60px;
+  // position: absolute;
+  // top: 0;
 }
 
 .example-headers-align .mat-expansion-panel-header-title,
@@ -48,4 +52,18 @@
 
 mat-form-field {
   margin-right: 12px;
+}
+
+.new-list-input{
+  border-bottom: 1px solid black;
+    padding-bottom: 6px;
+}
+
+.mat-icon{
+  cursor: pointer;
+}
+
+.new-list-form{
+  display: flex;
+    margin: 20px 12px 2px 16px;
 }

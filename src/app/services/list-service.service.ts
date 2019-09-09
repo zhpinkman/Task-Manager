@@ -16,6 +16,7 @@ export class ListServiceService {
   current_list_title : string
   current_list : List
   lists : List[]
+  is_done : boolean
 
   get_all_lists() : Observable<List[]> {
     return this.http.get<List[]>('http://localhost:3000/api/lists')
@@ -23,14 +24,17 @@ export class ListServiceService {
 
   get_list(title : string) {
     if (title == "Daily Tasks"){
+      this.is_done = false
       this.router.navigate(['mainList'])
       console.log("daily list");
     }
     else if (title == "compeleted"){
+      this.is_done = true
       this.router.navigate(['done'])
       console.log('done list')
     }
     else{
+      this.is_done = false
       console.log(title)
       this.router.navigate([title])
     }

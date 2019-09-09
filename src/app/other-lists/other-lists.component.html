@@ -8,17 +8,15 @@
       <mat-sidenav #snav>
         <mat-nav-list>
           <a mat-list-item routerLink="." (click)="go_to_list(list.title)" *ngFor="let list of lists">{{list.title}}</a>
-          <form [formGroup]="list">
-            <mat-form-field class="example-full-width">
-              <input formControlName="title" type="text" matInput placeholder="list">
-              <mat-icon matSuffix (click)="on_submit(list.value)" >create_new_folder</mat-icon>
-            </mat-form-field>
+          <form [formGroup]="list" class="new-list-form">
+              <input class="new-list-input" formControlName="title" type="text" matInput placeholder="new list">
+              <mat-icon matSuffix (click)="on_submit(list.value)" >add</mat-icon>
           </form>
         </mat-nav-list>
       </mat-sidenav>
   
       <mat-sidenav-content>
-          <app-new-task></app-new-task>
+          <app-new-task ></app-new-task>
         <div class="row no-gutters all-items-box all-files-folders">
           <app-task class="col-auto h-100"  *ngFor="let task of tasks" [value]="task"></app-task>
         </div>

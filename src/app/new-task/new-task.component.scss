@@ -16,3 +16,24 @@ mat-form-field {
 textarea{
     height: 20px;
 }
+
+mat-expansion-panel{
+  border-bottom-right-radius: 25px;
+  border-bottom-left-radius: 25px;
+  width: 430px;
+  margin: 0 auto
+}
+
+mat-panel-description{
+  justify-content: flex-end !important;
+}
+
+.panel-header{
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+
+.panel{
+  border-bottom-right-radius: 30px !important;
+  border-bottom-left-radius: 30px !important;
+}
