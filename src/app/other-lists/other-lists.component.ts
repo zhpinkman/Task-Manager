@@ -15,16 +15,25 @@ import { FormGroup, FormControl } from '@angular/forms';
 })
 export class OtherListsComponent implements OnInit {
 
+  ngOnChanges() {
+    console.log("change");
+    this.listService.update_current_list()
+    this.get_lists_and_tasks();
+  }
+
   ngOnInit() {
+    console.log("init");
     this.listService.update_current_list()
     this.get_lists_and_tasks();
   }
 
   get_tasks() {
     this.listService.lists = this.lists
+    console.log(this.lists);
     let list = this.listService.get_list_from_lists()
     if (list === null)
       this.go_to_list('Daily Tasks')
+    this.listService.current_list = list
     this.get_tasks_of_list(list)
   }
 
@@ -52,6 +61,7 @@ export class OtherListsComponent implements OnInit {
   }
 
   constructor(public listService : ListServiceService) {
+    console.log("constructor");
     this.title = new FormControl('')
     this.list = new FormGroup({
       title : this.title
@@ -71,19 +81,6 @@ export class OtherListsComponent implements OnInit {
 
   go_to_list(title : string) {
     this.listService.get_list(title)
-  }
-
-  step = 0;
-
-  setStep(index: number) {
-    this.step = index;
-  }
-
-  nextStep() {
-    this.step++;
-  }
-
-  prevStep() {
-    this.step--;
+    window.location.reload()
   }
 }

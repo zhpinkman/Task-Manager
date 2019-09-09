@@ -42,9 +42,11 @@ export class ListServiceService {
     for (let i  = 0; i < this.lists.length; i++){
       console.log(this.lists[i].title + " " + this.current_list_title);
       if (this.lists[i].title == this.current_list_title){
+        console.log(this.lists[i]);
         return this.lists[i]
       } 
     }
+    console.log("nothing found");
     return null
   }
 
