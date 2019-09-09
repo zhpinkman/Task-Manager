@@ -17,8 +17,7 @@ export class OtherListsComponent implements OnInit {
   ngOnInit() {
     this.valid_list = false
     this.listService.update_current_list()
-    this.get_lists();
-    // this.get_tasks();
+    this.get_lists_and_tasks();
   }
 
   get_tasks() {
@@ -33,17 +32,26 @@ export class OtherListsComponent implements OnInit {
     }
     if (!this.valid_list)
       this.go_to_list("mainList")
-    for (let index = 0; index < 10; index++) {
-      let task = new Task("title", "description description descriptiondescriptiondescriptiondescription descriptiondescription description description", list)
-      this.tasks.push(task)
-    }
+    this.get_tasks_of_list(list)
+    // for (let index = 0; index < 10; index++) {
+    //   let task = new Task("title", "description description descriptiondescriptiondescriptiondescription descriptiondescription description description", list)
+    //   this.tasks.push(task)
+    // }
+  }
+
+  get_tasks_of_list(list : List){
+    console.log(list);
+    this.listService.get_tasks_of_list(list)
+    .subscribe(data => {
+      this.tasks = data.filter(items => items.done === false)
+      console.log(data);
+      console.log(this.tasks);
+    })
   }
 
   valid_list : boolean
   tasks : Task[] = []
   lists : List[] = []
-
-  fillerNav = Array.from({length: 50}, (_, i) => `Nav Item ${i + 1}`);
 
   fillerContent = Array.from({length: 50}, () =>
       `Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut
@@ -56,10 +64,12 @@ export class OtherListsComponent implements OnInit {
   constructor(public listService : ListServiceService) {}
 
 
-  get_lists() {
+  get_lists_and_tasks() {
     this.listService.get_all_lists()
     .subscribe(_lists => {
       this.lists = _lists
+      console.log(this.lists);
+      this.lists.push(new List('compeleted'))
       this.get_tasks()
     })
   }

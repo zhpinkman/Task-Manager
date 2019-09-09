@@ -1,5 +1,6 @@
 import {List} from './List'
 export class Task {
+    _id : string
     title : string
     description : string
     done : boolean

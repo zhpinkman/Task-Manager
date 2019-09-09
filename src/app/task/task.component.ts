@@ -42,6 +42,6 @@ export class TaskComponent implements OnInit {
   }
 
   task_done(){
-    // todo
+    console.log("task_done");
   }
 }

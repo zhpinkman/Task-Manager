@@ -5,17 +5,18 @@ import { List } from '../classes/List';
 
 @Component({
   selector: 'app-main-list',
-  templateUrl: './main-list.component.html',
-  styleUrls: ['./main-list.component.scss']
+  templateUrl: '../other-lists/other-lists.component.html',
+  styleUrls: ['../other-lists/other-lists.component.scss']
 })
 export class MainListComponent implements OnInit {
 
   tasks : Task[] = []
   lists : List[] = []
+  main_list : List
 
   ngOnInit() {
-    console.log("zhivar");
     this.get_lists()
+    this.get_main_list()
   }
 
   constructor(public listService : ListServiceService) {}
@@ -28,11 +29,33 @@ export class MainListComponent implements OnInit {
    cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.`);
 
 
+   get_main_list(){
+     this.listService.get_main_list().subscribe(data =>
+      {
+        this.main_list = data
+        this.get_tasks_of_list(this.main_list)
+      }
+     )
+   }
 
   get_lists() {
     this.listService.get_all_lists()
-    .subscribe(_lists => this.lists = _lists)
+    .subscribe(_lists => {
+      this.lists = _lists
+      this.lists.push(new List('compeleted'))
+    })
   }
+
+  get_tasks_of_list(list : List){
+    console.log(list);
+    this.listService.get_tasks_of_list(list)
+    .subscribe(data => {
+      this.tasks = data.filter(item => item.done === false)
+      console.log(data);
+      console.log(this.tasks);
+    })
+  }
+
 
   go_to_list(title : string) {
     this.listService.get_list(title)

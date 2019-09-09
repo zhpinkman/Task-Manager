@@ -4,11 +4,10 @@ import { List } from '../classes/List';
 import { map } from 'rxjs/operators';
 import { Observable } from 'rxjs';
 import {Router} from "@angular/router"
+import { Task } from '../classes/Task';
 
 
 
-let lists : List[]
-let getListAPI = 'http://localhost:3000/api/lists'
 @Injectable({
   providedIn: 'root'
 })
@@ -17,18 +16,17 @@ export class ListServiceService {
   current_list : string
 
   get_all_lists() : Observable<List[]> {
-    return this.http.get<List[]>(getListAPI)
-    .pipe(
-      map(data => { return data})
-    )}
+    return this.http.get<List[]>('http://localhost:3000/api/lists')
+  }
 
   get_list(title : string) {
     if (title == "Daily Tasks"){
       this.router.navigate(['mainList'])
-      console.log("testing");
+      console.log("daily list");
     }
     else if (title == "compeleted"){
-      // todo 
+      this.router.navigate(['done'])
+      console.log('done list')
     }
     else{
       console.log(title)
@@ -50,5 +48,13 @@ export class ListServiceService {
 
   go_to_mainList() {
     this.router.navigate(['mainList'])
+  }
+
+  get_tasks_of_list(list : List) : Observable<Task[]>{
+    return this.http.get<Task[]>(`http://localhost:3000/api/tasks/query/${list._id}`);
+  }
+
+  get_main_list(): Observable<List> {
+    return this.http.get<List>(`http://localhost:3000/api/MainList`);
   }
 }
