@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ListServiceService } from '../services/list-service.service';
 import { Task } from '../classes/Task';
 import { List } from '../classes/List';
+import { FormControl, FormGroup } from '@angular/forms';
 
 @Component({
   selector: 'app-main-list',
@@ -13,13 +14,28 @@ export class MainListComponent implements OnInit {
   tasks : Task[] = []
   lists : List[] = []
   main_list : List
+  list : FormGroup
+  title : FormControl
+  
+  on_submit(data) {
+    this.listService.create_folder(data).subscribe( res => {
+      console.log(res)
+      this.listService.refresh_page()
+    })
+  }
+  
 
   ngOnInit() {
     this.get_lists()
     this.get_main_list()
   }
 
-  constructor(public listService : ListServiceService) {}
+  constructor(public listService : ListServiceService) {
+    this.title = new FormControl('')
+    this.list = new FormGroup({
+      title : this.title
+    })
+  }
 
   fillerContent = Array.from({length: 50}, () =>
   `Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut

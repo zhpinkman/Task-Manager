@@ -64,6 +64,12 @@ export class ListServiceService {
     // todo
   }
 
+  create_folder(data) : Observable<List> {
+    let list = new List(data.title)
+    console.log(list);
+    return this.http.post<List>('http://localhost:3000/api/lists', list)
+  }
+
   go_to_mainList() {
     this.router.navigate(['mainList'])
   }

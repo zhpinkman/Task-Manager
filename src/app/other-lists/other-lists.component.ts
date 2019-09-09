@@ -6,6 +6,7 @@ import { Task } from '../classes/Task';
 import { List } from '../classes/List';
 import { AngularWaitBarrier } from 'blocking-proxy/built/lib/angular_wait_barrier';
 import { element } from 'protractor';
+import { FormGroup, FormControl } from '@angular/forms';
 
 @Component({
   selector: 'app-other-lists',
@@ -39,8 +40,23 @@ export class OtherListsComponent implements OnInit {
 
   tasks : Task[] = []
   lists : List[] = []
+  list : FormGroup
+  title : FormControl
+  
+  on_submit(data) {
+    console.log(data);
+    this.listService.create_folder(data).subscribe( res => {
+      console.log(res)
+      this.listService.refresh_page()
+    })
+  }
 
-  constructor(public listService : ListServiceService) {}
+  constructor(public listService : ListServiceService) {
+    this.title = new FormControl('')
+    this.list = new FormGroup({
+      title : this.title
+    })
+  }
 
 
   get_lists_and_tasks() {

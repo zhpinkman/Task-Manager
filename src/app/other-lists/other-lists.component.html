@@ -8,6 +8,12 @@
       <mat-sidenav #snav>
         <mat-nav-list>
           <a mat-list-item routerLink="." (click)="go_to_list(list.title)" *ngFor="let list of lists">{{list.title}}</a>
+          <form [formGroup]="list">
+            <mat-form-field class="example-full-width">
+              <input formControlName="title" type="text" matInput placeholder="list">
+              <mat-icon matSuffix (click)="on_submit(list.value)" >create_new_folder</mat-icon>
+            </mat-form-field>
+          </form>
         </mat-nav-list>
       </mat-sidenav>
   
