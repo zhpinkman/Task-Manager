@@ -33,6 +33,7 @@ export class MainListComponent implements OnInit {
      this.listService.get_main_list().subscribe(data =>
       {
         this.main_list = data
+        this.listService.current_list = data
         this.get_tasks_of_list(this.main_list)
       }
      )
@@ -42,6 +43,7 @@ export class MainListComponent implements OnInit {
     this.listService.get_all_lists()
     .subscribe(_lists => {
       this.lists = _lists
+      this.listService.lists = this.lists
       this.lists.push(new List('compeleted'))
     })
   }

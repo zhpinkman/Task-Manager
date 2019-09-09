@@ -11,5 +11,6 @@ export class Task {
         this.description = description
         this.list = list
         this.date = date
+        this.done = false
     }
 }

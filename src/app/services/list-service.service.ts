@@ -13,7 +13,9 @@ import { Task } from '../classes/Task';
 })
 export class ListServiceService {
   constructor(private http: HttpClient, private router : Router) { }
-  current_list : string
+  current_list_title : string
+  current_list : List
+  lists : List[]
 
   get_all_lists() : Observable<List[]> {
     return this.http.get<List[]>('http://localhost:3000/api/lists')
@@ -34,16 +36,32 @@ export class ListServiceService {
     }
   }
 
+  get_list_from_lists() : List{
+    let list : List
+    console.log(this.lists.length);
+    for (let i  = 0; i < this.lists.length; i++){
+      console.log(this.lists[i].title + " " + this.current_list_title);
+      if (this.lists[i].title == this.current_list_title){
+        return this.lists[i]
+      } 
+    }
+    return null
+  }
+
   update_current_list() {
     let x = this.router.url
     let y = x.substr(1,x.length)
     let i = y.indexOf('/')
     if (i == -1){
       i = y.length
-      this.current_list = y.substr(0, i)
+      this.current_list_title = y.substr(0, i)
     }
     else  
       this.go_to_mainList()
+  }
+
+  refresh_page() {
+    // todo
   }
 
   go_to_mainList() {

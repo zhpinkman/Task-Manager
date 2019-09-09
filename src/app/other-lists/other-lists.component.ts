@@ -15,23 +15,15 @@ import { element } from 'protractor';
 export class OtherListsComponent implements OnInit {
 
   ngOnInit() {
-    this.valid_list = false
     this.listService.update_current_list()
     this.get_lists_and_tasks();
   }
 
   get_tasks() {
-    let list : List
-    console.log(this.lists.length);
-    for (let i  = 0; i < this.lists.length; i++){
-      console.log(this.lists[i].title + " " + this.listService.current_list);
-      if (this.lists[i].title == this.listService.current_list){
-        list = this.lists[i]
-        this.valid_list = true
-      } 
-    }
-    if (!this.valid_list)
-      this.go_to_list("mainList")
+    this.listService.lists = this.lists
+    let list = this.listService.get_list_from_lists()
+    if (list === null)
+      this.go_to_list('Daily Tasks')
     this.get_tasks_of_list(list)
   }
 
@@ -45,7 +37,6 @@ export class OtherListsComponent implements OnInit {
     })
   }
 
-  valid_list : boolean
   tasks : Task[] = []
   lists : List[] = []
 
