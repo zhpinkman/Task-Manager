@@ -1,21 +1,22 @@
 <div class="full-container">
-    <div class="done-icon" *ngIf="mouse_on_task" (click)="task_done()">
-        <i class="fa fa-check-circle" aria-hidden="true"></i>
-    </div>
-    <div mat-raised-button class="task-container parent box-limit" (mouseover)="hover_on()" (mouseout)="hover_off()" (click)="openDialog()">
-        <div class="task-name">
+    <div mat-raised-button class="task-container parent box-limit" (mouseenter)="hover_on()" (mouseleave)="hover_off()" (click)="openDialog()">
+        <div class="task-name-description">
         <span>{{task.title}}</span>
         </div>
-        <div class="task-description">
+        <div class="task-name-description">
             {{task.description}}
         </div>
-        <!-- <div class="task-options" *ngIf="mouse_on_task">
+        
+        <div class="task-options" *ngIf="mouse_on_task">
             <div class="delete_icon">
                 <i class="fa fa-trash" aria-hidden="true"></i>
             </div>
-            <div class="move-to-daily">
+            <div class="move-to-daily-icon">
                 <i class="fa fa-star" aria-hidden="true"></i>
             </div>
-        </div> -->
+            <div class="done-icon">
+                <i class="fa fa-check-circle" aria-hidden="true"></i>
+            </div>
+        </div>
     </div>
 </div>

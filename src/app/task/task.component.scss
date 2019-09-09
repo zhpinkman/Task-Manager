@@ -23,14 +23,6 @@ p {
     transition: all 0.3s;
     cursor: default;
 
-    .task-name {
-      font-style: 18px;
-      font-weight: bold;
-      padding: 10px 12px 10px;
-      overflow: hidden;
-      text-overflow: ellipsis;
-      white-space: nowrap;
-    }
   }
 
   &:hover {
@@ -55,7 +47,7 @@ p {
 }
 
 
-.task-description{
+.task-name-description{
   overflow: hidden;
   white-space: nowrap;
   text-overflow: ellipsis;
@@ -65,20 +57,41 @@ p {
 }
 
 
-.done-icon{
-    cursor: pointer;
-    position: relative;
-    top: -10px;
-    left: -8px;
-    width: 0;
-    height: 0;
-    font-size: 20px;
-}
 
 .my-centered-dialog {
   max-width: 80vw;
 
   .mat-dialog-container {
     max-width: none;
+  }
+}
+
+.task-options{
+  display: flex;
+  justify-content: flex-end;
+  padding-bottom: 5px;
+}
+
+.delete_icon{
+  opacity: 0.4;
+  margin-right: 5px;
+  &:hover{
+    opacity: 1;
+  }
+}
+
+.move-to-daily-icon{
+  opacity: 0.4;
+  margin-right: 5px;
+  &:hover{
+    opacity: 1;
+  }
+}
+
+.done-icon{
+  opacity: 0.4;
+  margin-right: 5px;
+  &:hover{
+    opacity: 1;
   }
 }
