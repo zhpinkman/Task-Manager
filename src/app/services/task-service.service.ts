@@ -3,12 +3,16 @@ import { ListServiceService } from './list-service.service';
 import { Task } from '../classes/Task';
 import {Router} from "@angular/router"
 import { HttpClient } from '@angular/common/http';
-import { Observable } from 'rxjs';
+import { Observable, Subject } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
 })
 export class TaskServiceService {
+
+  task_deleted = new Subject<Task>()
+  task_added = new Subject<Task>()
+  // main_task_added = new Subject<Task>()
 
   constructor(private listService : ListServiceService, private http: HttpClient, private router : Router) { }
 
@@ -20,4 +24,21 @@ export class TaskServiceService {
   get_compeleted_tasks() : Observable<Task[]>{
     return this.http.get<Task[]>('http://localhost:3000/api/compeleted')
   }
+
+  delete_task(task : Task) : Observable<any>{
+    console.log("here");
+    return this.http.delete(`http://localhost:3000/api/tasks/${task._id}`)
+  }
+
+  delete_task_from_list(task : Task){
+    this.task_deleted.next()
+  }
+
+  add_task_to_list(task : Task){
+    this.task_added.next(task)
+  }
+
+  // add_task_to_main_list(task : Task){
+
+  // }
 }

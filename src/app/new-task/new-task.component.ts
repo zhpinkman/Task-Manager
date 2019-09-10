@@ -11,7 +11,7 @@ import { ListServiceService } from '../services/list-service.service';
 })
 export class NewTaskComponent implements OnInit {
 
-  constructor(private taskServiceService : TaskServiceService, private listService : ListServiceService) { 
+  constructor(private taskService : TaskServiceService, private listService : ListServiceService) { 
     this.title = new FormControl('')
     this.description = new FormControl('')
     this.date = new FormControl('')
@@ -38,11 +38,12 @@ export class NewTaskComponent implements OnInit {
     this.date.setValue(this.tomorrow)
   }
 
-  onSubmit(data) {
-    console.log('Your order has been submitted', data);
-    this.taskServiceService.add_new_task(data).subscribe( res => {
+  onSubmit(task) {
+    console.log('Your order has been submitted', task);
+    this.taskService.add_new_task(task).subscribe( res => {
       console.log(res);
-      this.listService.refresh_page()
+      // this.listService.refresh_page()
+      this.taskService.add_task_to_list(task)
     })
     this.new_task.reset();
   }

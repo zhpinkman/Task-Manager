@@ -3,6 +3,7 @@ import { ListServiceService } from '../services/list-service.service';
 import { Task } from '../classes/Task';
 import { List } from '../classes/List';
 import { FormControl, FormGroup } from '@angular/forms';
+import { TaskServiceService } from '../services/task-service.service';
 
 @Component({
   selector: 'app-main-list',
@@ -31,10 +32,17 @@ export class MainListComponent implements OnInit {
     this.get_main_list()
   }
 
-  constructor(public listService : ListServiceService) {
+  constructor(public listService : ListServiceService, private taskService : TaskServiceService) {
     this.title = new FormControl('')
     this.list = new FormGroup({
       title : this.title
+    })
+    this.taskService.task_deleted.subscribe(task => {
+      console.log(task);
+      this.tasks.splice(this.tasks.indexOf(task), 1);
+    })
+    this.taskService.task_added.subscribe(task => {
+      this.tasks.push(task)
     })
   }
 

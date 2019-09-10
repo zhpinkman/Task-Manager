@@ -1,6 +1,6 @@
 <div class="full-container">
     <div mat-raised-button class="task-container parent box-limit" (mouseenter)="hover_on()" (mouseleave)="hover_off()" (click)="openDialog()">
-        <div class="task-name-description">
+        <div class="task-name-description font-weight-bold">
         <span>{{task.title}}</span>
         </div>
         <div class="task-name-description">
@@ -8,13 +8,13 @@
         </div>
         
         <div class="task-options" *ngIf="mouse_on_task">
-            <div class="delete_icon">
+            <div class="delete_icon" (click)="delete_task()">
                 <i class="fa fa-trash" aria-hidden="true"></i>
             </div>
-            <div class="move-to-daily-icon">
+            <div class="move-to-daily-icon" (click)="move_task_to_daily()">
                 <i class="fa fa-star" aria-hidden="true"></i>
             </div>
-            <div class="done-icon">
+            <div class="done-icon" (click)="task_done()">
                 <i class="fa fa-check-circle" aria-hidden="true"></i>
             </div>
         </div>

@@ -17,6 +17,8 @@ export class TaskComponent implements OnInit {
   ngOnInit() {
   }
 
+  dialogRef : any
+
   openDialog(): void {
     const opts = new MatDialogConfig();
     const dialogRef = this.dialog.open(OpenedTaskComponent, {
@@ -24,6 +26,7 @@ export class TaskComponent implements OnInit {
       panelClass: 'my-centered-dialog',
       width: '400px'
     });
+    this.dialogRef = dialogRef
     dialogRef.updatePosition(opts.position);
 
     dialogRef.afterClosed().subscribe(result => {
@@ -43,5 +46,18 @@ export class TaskComponent implements OnInit {
 
   task_done(){
     console.log("task_done");
+  }
+
+  move_task_to_daily(){
+    console.log("moved");
+  }
+
+  delete_task(){
+    console.log("delete");
+    this.taskService.delete_task(this.task)
+    .subscribe(res => {
+      this.taskService.delete_task_from_list(this.task)
+      this.dialog.closeAll()
+    })
   }
 }

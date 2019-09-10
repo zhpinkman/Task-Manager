@@ -16,7 +16,7 @@
       </mat-sidenav>
   
       <mat-sidenav-content>
-          <app-new-task ></app-new-task>
+          <app-new-task *ngIf="this.listService.is_done == false"></app-new-task>
         <div class="row no-gutters all-items-box all-files-folders">
           <app-task class="col-auto h-100"  *ngFor="let task of tasks" [value]="task"></app-task>
         </div>

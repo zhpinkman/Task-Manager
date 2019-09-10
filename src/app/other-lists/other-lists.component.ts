@@ -7,6 +7,7 @@ import { List } from '../classes/List';
 import { AngularWaitBarrier } from 'blocking-proxy/built/lib/angular_wait_barrier';
 import { element } from 'protractor';
 import { FormGroup, FormControl } from '@angular/forms';
+import { TaskServiceService } from '../services/task-service.service';
 
 @Component({
   selector: 'app-other-lists',
@@ -56,11 +57,18 @@ export class OtherListsComponent implements OnInit {
     })
   }
 
-  constructor(public listService : ListServiceService) {
+  constructor(public listService : ListServiceService, private taskService : TaskServiceService) {
     console.log("constructor");
     this.title = new FormControl('')
     this.list = new FormGroup({
       title : this.title
+    })
+    this.taskService.task_deleted.subscribe(task => {
+      console.log(task);
+      this.tasks.splice(this.tasks.indexOf(task), 1);
+    })
+    this.taskService.task_added.subscribe(task => {
+      this.tasks.push(task)
     })
   }
 

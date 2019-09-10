@@ -15,7 +15,7 @@ import {MatIconModule} from '@angular/material/icon';
 import {MatListModule} from '@angular/material/list';
 import { HttpClientModule } from '@angular/common/http';
 import { AngularFontAwesomeModule } from 'angular-font-awesome';
-import {MatDialogModule} from '@angular/material/dialog';
+import {MatDialogModule, MatDialogRef} from '@angular/material/dialog';
 import { OpenedTaskComponent } from './opened-task/opened-task.component';
 import {MatFormFieldModule} from '@angular/material/form-field';
 import { FormsModule } from '@angular/forms';
