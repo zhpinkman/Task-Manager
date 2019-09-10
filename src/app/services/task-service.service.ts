@@ -38,7 +38,7 @@ export class TaskServiceService {
     this.task_added.next(task)
   }
 
-  // add_task_to_main_list(task : Task){
-
-  // }
+  move_task(task : Task) : Observable<any>{
+    return this.http.put(`http://localhost:3000/api/tasks/${task._id}`, task)
+  }
 }

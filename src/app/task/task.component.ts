@@ -3,6 +3,7 @@ import { Task } from '../classes/Task';
 import { TaskServiceService } from '../services/task-service.service';
 import {MatDialog, MatDialogRef, MAT_DIALOG_DATA, MatDialogConfig} from '@angular/material/dialog';
 import { OpenedTaskComponent } from '../opened-task/opened-task.component';
+import { ListServiceService } from '../services/list-service.service';
 
 @Component({
   selector: 'app-task',
@@ -12,7 +13,7 @@ import { OpenedTaskComponent } from '../opened-task/opened-task.component';
 export class TaskComponent implements OnInit {
   @Input('value')
   task: Task;
-  constructor(private taskService : TaskServiceService, public dialog: MatDialog) { }
+  constructor(private taskService : TaskServiceService, public dialog: MatDialog, private listService : ListServiceService) { }
 
   ngOnInit() {
   }
@@ -50,6 +51,15 @@ export class TaskComponent implements OnInit {
 
   move_task_to_daily(){
     console.log("moved");
+    this.listService.get_main_list()
+    .subscribe(main_list => {
+      this.task.list = main_list
+      this.taskService.move_task(this.task)
+      .subscribe(res => {
+        this.taskService.delete_task_from_list(this.task)
+        this.dialog.closeAll()
+      })
+    })
   }
 
   delete_task(){
