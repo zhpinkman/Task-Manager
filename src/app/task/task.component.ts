@@ -47,6 +47,12 @@ export class TaskComponent implements OnInit {
 
   task_done(){
     console.log("task_done");
+    this.task.done = true
+    this.taskService.update_task(this.task)
+    .subscribe(res => {
+      this.taskService.delete_task_from_list(this.task)
+      this.dialog.closeAll()
+    })
   }
 
   move_task_to_daily(){
@@ -54,7 +60,7 @@ export class TaskComponent implements OnInit {
     this.listService.get_main_list()
     .subscribe(main_list => {
       this.task.list = main_list
-      this.taskService.move_task(this.task)
+      this.taskService.update_task(this.task)
       .subscribe(res => {
         this.taskService.delete_task_from_list(this.task)
         this.dialog.closeAll()

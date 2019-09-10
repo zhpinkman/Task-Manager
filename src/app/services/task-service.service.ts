@@ -12,7 +12,6 @@ export class TaskServiceService {
 
   task_deleted = new Subject<Task>()
   task_added = new Subject<Task>()
-  // main_task_added = new Subject<Task>()
 
   constructor(private listService : ListServiceService, private http: HttpClient, private router : Router) { }
 
@@ -29,6 +28,10 @@ export class TaskServiceService {
     console.log("here");
     return this.http.delete(`http://localhost:3000/api/tasks/${task._id}`)
   }
+  
+  update_task(task : Task) : Observable<any>{
+    return this.http.put(`http://localhost:3000/api/tasks/${task._id}`, task)
+  }
 
   delete_task_from_list(task : Task){
     this.task_deleted.next()
@@ -36,9 +39,5 @@ export class TaskServiceService {
 
   add_task_to_list(task : Task){
     this.task_added.next(task)
-  }
-
-  move_task(task : Task) : Observable<any>{
-    return this.http.put(`http://localhost:3000/api/tasks/${task._id}`, task)
   }
 }

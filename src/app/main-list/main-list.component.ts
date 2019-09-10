@@ -27,6 +27,7 @@ export class MainListComponent implements OnInit {
   
 
   ngOnInit() {
+    this.listService.current_list_title = "Daily Tasks"
     this.listService.is_done = false
     this.get_lists()
     this.get_main_list()

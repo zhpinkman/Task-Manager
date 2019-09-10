@@ -87,4 +87,8 @@ export class ListServiceService {
   get_main_list(): Observable<List> {
     return this.http.get<List>(`http://localhost:3000/api/MainList`);
   }
+
+  delete_current_list() : Observable<any> {
+    return this.http.delete(`http://localhost:3000/api/lists/${this.current_list._id}`)
+  }
 }

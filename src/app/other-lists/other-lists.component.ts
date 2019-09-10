@@ -87,4 +87,20 @@ export class OtherListsComponent implements OnInit {
     this.listService.get_list(title)
     // window.location.reload()
   }
+
+  delete_list(){
+    console.log("starting deleting");
+    this.tasks.forEach(task => {
+      this.taskService.delete_task(task)
+      .subscribe(res => {
+        console.log("deleted");
+        this.taskService.delete_task_from_list(task)
+      })
+    });
+    this.listService.delete_current_list()
+    .subscribe(res => {
+      console.log("list deleted");
+      this.go_to_list('Daily Tasks')
+    })
+  }
 }

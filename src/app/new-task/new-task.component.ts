@@ -48,4 +48,10 @@ export class NewTaskComponent implements OnInit {
     this.new_task.reset();
   }
 
+  handle_space(event) {
+    console.log("space");
+    if (event.keyCode === 32) {
+      event.stopPropagation();
+    }
+   }
 }

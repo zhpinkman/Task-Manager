@@ -26,6 +26,7 @@ export class DoneComponent implements OnInit {
   
 
   ngOnInit() {
+    this.listService.current_list_title = "Compeleted"
     this.listService.is_done = true
     this.get_lists()
     this.get_compeleted_tasks()
