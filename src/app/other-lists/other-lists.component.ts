@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
 import {MediaMatcher} from '@angular/cdk/layout';
 import {ChangeDetectorRef, OnDestroy} from '@angular/core';
 import { ListServiceService } from '../services/list-service.service';
@@ -53,6 +53,8 @@ export class OtherListsComponent implements OnInit {
   lists : List[] = []
   list : FormGroup
   title : FormControl
+  editing_mode : boolean
+
   
   on_submit(data) {
     console.log(data);
@@ -79,6 +81,28 @@ export class OtherListsComponent implements OnInit {
       console.log("has to be updated");
       this.get_lists_and_tasks();
     })
+    this.editing_mode = false
+  }
+
+
+  @ViewChild('title_input', {static: false})
+  title_input : ElementRef<HTMLInputElement>;
+  leave_edit_mode() {
+    this.editing_mode = false
+    let new_title = this.title_input.nativeElement.value
+    let current_list = this.listService.current_list
+    current_list.title = new_title
+    this.listService.update_list(current_list)
+    .subscribe(res => {
+      console.log("finaly finished");
+      this.listService.current_list_title = new_title
+      this.go_to_list(new_title)
+    })
+  }
+  
+  
+  enter_edit_mode() {
+    this.editing_mode = true
   }
 
 

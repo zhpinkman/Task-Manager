@@ -2,10 +2,19 @@
     <mat-toolbar color="primary" class="example-toolbar">
       <div class="menu-and-title">
         <button mat-icon-button (click)="snav.toggle()"><mat-icon>menu</mat-icon></button>
-        <h1 class="example-app-name">{{this.listService.current_list_title}}</h1>
-      </div>
-      <div class="delete-list" (click)="delete_list()" *ngIf="this.listService.current_list_title != 'Daily Tasks' && this.listService.current_list_title != 'Compeleted'">
-        <i class="fa fa-trash-o" aria-hidden="true"></i>
+        <h1 *ngIf="editing_mode == false"  class="example-app-name">{{this.listService.current_list_title}}</h1>
+        <input *ngIf="editing_mode == true" #title_input class="list-title-input" type="text" value="{{this.listService.current_list_title}}">
+        </div>
+        <div class="delete-edit" *ngIf="this.listService.current_list_title != 'Daily Tasks' && this.listService.current_list_title != 'Compeleted'">
+        <div class="list-title-edited" (click)="leave_edit_mode()" *ngIf="editing_mode == true">
+          <i class="fa fa-check" aria-hidden="true"></i>
+        </div>
+        <div class="edit-list" (click)="enter_edit_mode()" *ngIf="editing_mode == false">
+          <i class="fa fa-pencil" aria-hidden="true"></i>
+        </div>
+        <div class="delete-list" (click)="delete_list()">
+          <i class="fa fa-trash-o" aria-hidden="true"></i>
+        </div>
       </div>
     </mat-toolbar>
   

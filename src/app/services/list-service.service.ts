@@ -92,4 +92,8 @@ export class ListServiceService {
   delete_current_list() : Observable<any> {
     return this.http.delete(`http://localhost:3000/api/lists/${this.current_list._id}`)
   }
+
+  update_list(list : List) : Observable<any>{
+    return this.http.put(`http://localhost:3000/api/lists/${list._id}`, list)
+  }
 }
