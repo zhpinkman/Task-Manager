@@ -16,19 +16,24 @@ export class OpenedTaskComponent implements OnInit {
     private listService : ListServiceService,
     public dialogRef: MatDialogRef<OpenedTaskComponent>,
     @Inject(MAT_DIALOG_DATA) public task: Task) {
-    this.title = new FormControl('')
-    this.description = new FormControl('')
-    this.date = new FormControl('')
-    this.task_form = new FormGroup({
-      title : this.title,
-      description : this.description,
-      date : this.date
-    })
+      dialogRef.beforeClosed().subscribe(data => {
+        console.log(data);
+      })
+      this.title = new FormControl('')
+      this.description = new FormControl('')
+      this.date = new FormControl('')
+      this.task_form = new FormGroup({
+        title : this.title,
+        description : this.description,
+        date : this.date
+      })
     }
 
-  onNoClick(): void {
-    this.dialogRef.close();
-  }
+    ngOnDestroy(){
+      console.log("destroyed");
+      this.dialogRef.close(this.task_form.value)
+    }
+
 
   title : FormControl
   description : FormControl

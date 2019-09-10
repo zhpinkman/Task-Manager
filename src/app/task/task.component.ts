@@ -32,8 +32,21 @@ export class TaskComponent implements OnInit {
 
     dialogRef.afterClosed().subscribe(result => {
       console.log('The dialog was closed');
-      // this.animal = result;
+      // console.log(result);
+      this.task.title = result.title
+      this.task.description = result.description
+      this.task.date = result.date
+      // console.log(this.task._id);
+      this.update_task()
     });
+  }
+
+  update_task(){
+    // console.log(this.task);
+    this.taskService.update_task(this.task)
+    .subscribe(res => {
+      console.log("item updated");
+    })
   }
 
   mouse_on_task : boolean = false

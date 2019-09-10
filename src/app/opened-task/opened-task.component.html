@@ -1,10 +1,10 @@
 <form [formGroup]="task_form">
   <mat-form-field>
-    <input class="task-title" matInput formControlName="title" [(ngModel)]="task.title" value="task.title" placeholder="Title">
+    <input class="task-title" matInput formControlName="title" [(ngModel)]="task.title" value="{{this.task.title}}" placeholder="Title">
   </mat-form-field>
   <div mat-dialog-content>
     <mat-form-field>
-      <input matInput formControlName="description" [(ngModel)]="task.description" value="task.description" placeholder="Description">
+      <input matInput formControlName="description" [(ngModel)]="task.description" value="{{task.description}}" placeholder="Description">
     </mat-form-field>
   </div>
   <div class="date-options">
