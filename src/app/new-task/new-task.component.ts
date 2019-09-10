@@ -39,6 +39,7 @@ export class NewTaskComponent implements OnInit {
   }
 
   onSubmit(task) {
+    console.log(task.date);
     console.log('Your order has been submitted', task);
     this.taskService.add_new_task(task).subscribe( res => {
       console.log(res);

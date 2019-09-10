@@ -6,16 +6,20 @@
         <div class="task-name-description">
             {{task.description}}
         </div>
-        
-        <div class="task-options " *ngIf="mouse_on_task">
-            <div class="delete_icon" (click)="delete_task()">
-                <i class="fa fa-trash" aria-hidden="true"></i>
+        <div class="date-options">
+            <div class="date">
+                <span>{{this.task.date | date : "M/d/yy"}}</span>
             </div>
-            <div class="move-to-daily-icon" (click)="move_task_to_daily()">
-                <i class="fa fa-star" aria-hidden="true"></i>
-            </div>
-            <div class="done-icon" (click)="task_done()">
-                <i class="fa fa-check-circle" aria-hidden="true"></i>
+            <div class="task-options" *ngIf="this.mouse_on_task">
+                <div class="delete_icon" (click)="delete_task()">
+                    <i class="fa fa-trash" aria-hidden="true"></i>
+                </div>
+                <div class="move-to-daily-icon" (click)="move_task_to_daily()">
+                    <i class="fa fa-star" aria-hidden="true"></i>
+                </div>
+                <div class="done-icon" (click)="task_done()">
+                    <i class="fa fa-check-circle" aria-hidden="true"></i>
+                </div>
             </div>
         </div>
     </div>

@@ -17,6 +17,7 @@ export class TaskServiceService {
 
   add_new_task(data) {
     let task = new Task(data.title, data.description, this.listService.current_list, data.date)
+    console.log(task);
     return this.http.post<Task>('http://localhost:3000/api/tasks', task)
   }
 

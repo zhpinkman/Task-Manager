@@ -39,6 +39,8 @@ export class TaskComponent implements OnInit {
   mouse_on_task : boolean = false
 
   hover_on(){
+    console.log(this.task);
+    console.log(this.task.date);
     this.mouse_on_task = true
   }
   hover_off(){
