@@ -4,7 +4,7 @@
         <button mat-icon-button (click)="snav.toggle()"><mat-icon>menu</mat-icon></button>
         <h1 class="example-app-name">{{this.listService.current_list_title}}</h1>
       </div>
-      <div class="delete-list" (click)="delete_list()">
+      <div class="delete-list" (click)="delete_list()" *ngIf="this.listService.current_list_title != 'Daily Tasks' && this.listService.current_list_title != 'Compeleted'">
         <i class="fa fa-trash-o" aria-hidden="true"></i>
       </div>
     </mat-toolbar>
@@ -12,7 +12,7 @@
     <mat-sidenav-container class="example-sidenav-container">
       <mat-sidenav #snav>
         <mat-nav-list>
-          <a mat-list-item routerLink="." (click)="go_to_list(list.title)" *ngFor="let list of lists">{{list.title}}</a>
+          <a mat-list-item routerLink="." (click)="go_to_list(list.title); snav.close()" *ngFor="let list of lists">{{list.title}}</a>
           <form [formGroup]="list" class="new-list-form">
               <input class="new-list-input" formControlName="title" type="text" matInput placeholder="new list">
               <mat-icon matSuffix (click)="on_submit(list.value)" >add</mat-icon>

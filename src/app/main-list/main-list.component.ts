@@ -21,7 +21,6 @@ export class MainListComponent implements OnInit {
   on_submit(data) {
     this.listService.create_folder(data).subscribe( res => {
       console.log(res)
-      this.listService.refresh_page()
     })
   }
   
@@ -75,7 +74,6 @@ export class MainListComponent implements OnInit {
       console.log(this.tasks);
     })
   }
-
 
   go_to_list(title : string) {
     this.listService.get_list(title)

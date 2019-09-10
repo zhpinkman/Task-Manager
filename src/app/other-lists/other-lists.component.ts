@@ -8,6 +8,7 @@ import { AngularWaitBarrier } from 'blocking-proxy/built/lib/angular_wait_barrie
 import { element } from 'protractor';
 import { FormGroup, FormControl } from '@angular/forms';
 import { TaskServiceService } from '../services/task-service.service';
+import { HttpBackend } from '@angular/common/http';
 
 @Component({
   selector: 'app-other-lists',
@@ -16,6 +17,10 @@ import { TaskServiceService } from '../services/task-service.service';
 })
 export class OtherListsComponent implements OnInit {
 
+
+  // close_sider(){
+  //   document.getElementById
+  // }
 
   ngOnInit() {
     this.listService.is_done = false
@@ -53,7 +58,6 @@ export class OtherListsComponent implements OnInit {
     console.log(data);
     this.listService.create_folder(data).subscribe( res => {
       console.log(res)
-      this.listService.refresh_page()
     })
   }
 
@@ -70,6 +74,11 @@ export class OtherListsComponent implements OnInit {
     this.taskService.task_added.subscribe(task => {
       this.tasks.push(task)
     })
+
+    this.listService.refresh_page.subscribe(data => {
+      console.log("has to be updated");
+      this.get_lists_and_tasks();
+    })
   }
 
 
@@ -78,12 +87,13 @@ export class OtherListsComponent implements OnInit {
     .subscribe(_lists => {
       this.lists = _lists
       console.log(this.lists);
-      this.lists.push(new List('compeleted'))
+      this.lists.push(new List('Compeleted'))
       this.get_tasks()
     })
   }
 
   go_to_list(title : string) {
+    this.listService.current_list_title = title
     this.listService.get_list(title)
     // window.location.reload()
   }

@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { List } from '../classes/List';
 import { map } from 'rxjs/operators';
-import { Observable } from 'rxjs';
+import { Observable, Subject } from 'rxjs';
 import {Router} from "@angular/router"
 import { Task } from '../classes/Task';
 
@@ -12,6 +12,9 @@ import { Task } from '../classes/Task';
   providedIn: 'root'
 })
 export class ListServiceService {
+
+  refresh_page = new Subject<string>()
+
   constructor(private http: HttpClient, private router : Router) { }
   current_list_title : string
   current_list : List
@@ -28,7 +31,7 @@ export class ListServiceService {
       this.router.navigate(['mainList'])
       console.log("daily list");
     }
-    else if (title == "compeleted"){
+    else if (title == "Compeleted"){
       this.is_done = true
       this.router.navigate(['done'])
       console.log('done list')
@@ -37,6 +40,7 @@ export class ListServiceService {
       this.is_done = false
       console.log(title)
       this.router.navigate([title])
+      this.refresh_page.next()
     }
   }
 
@@ -61,13 +65,10 @@ export class ListServiceService {
     if (i == -1){
       i = y.length
       this.current_list_title = y.substr(0, i)
+      console.log(this.current_list_title);
     }
     else  
       this.go_to_mainList()
-  }
-
-  refresh_page() {
-    // todo
   }
 
   create_folder(data) : Observable<List> {
