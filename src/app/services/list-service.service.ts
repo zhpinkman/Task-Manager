@@ -29,16 +29,16 @@ export class ListServiceService {
     if (title == "Daily Tasks"){
       this.is_done = false
       this.router.navigate(['mainList'])
-      console.log("daily list");
+      //console.log("daily list");
     }
     else if (title == "Compeleted"){
       this.is_done = true
       this.router.navigate(['done'])
-      console.log('done list')
+      //console.log('done list')
     }
     else{
       this.is_done = false
-      console.log(title)
+      //console.log(title)
       this.router.navigate([title])
       this.refresh_page.next()
     }
@@ -46,15 +46,15 @@ export class ListServiceService {
 
   get_list_from_lists() : List{
     let list : List
-    console.log(this.lists.length);
+    //console.log(this.lists.length);
     for (let i  = 0; i < this.lists.length; i++){
-      console.log(this.lists[i].title + " " + this.current_list_title);
+      //console.log(this.lists[i].title + " " + this.current_list_title);
       if (this.lists[i].title == this.current_list_title){
-        console.log(this.lists[i]);
+        //console.log(this.lists[i]);
         return this.lists[i]
       } 
     }
-    console.log("nothing found");
+    //console.log("nothing found");
     return null
   }
 
@@ -65,7 +65,7 @@ export class ListServiceService {
     if (i == -1){
       i = y.length
       this.current_list_title = y.substr(0, i)
-      console.log(this.current_list_title);
+      //console.log(this.current_list_title);
     }
     else  
       this.go_to_mainList()
@@ -73,7 +73,7 @@ export class ListServiceService {
 
   create_folder(data) : Observable<List> {
     let list = new List(data.title)
-    console.log(list);
+    //console.log(list);
     return this.http.post<List>('http://localhost:3000/api/lists', list)
   }
 

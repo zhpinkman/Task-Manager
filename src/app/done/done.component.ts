@@ -16,17 +16,20 @@ export class DoneComponent implements OnInit {
   lists : List[] = []
   list : FormGroup
   title : FormControl
+  editing_mode : boolean
   
   on_submit(data) {
     this.listService.create_folder(data).subscribe( res => {
-      console.log(res)
+      // console.log(res)
     })
   }
   
 
   ngOnInit() {
+    this.editing_mode = false
     this.listService.current_list_title = "Compeleted"
     this.listService.is_done = true
+    console.log("shit");
     this.get_lists()
     this.get_compeleted_tasks()
   }
@@ -51,7 +54,7 @@ export class DoneComponent implements OnInit {
     .subscribe(_lists => {
       this.lists = _lists
       this.listService.lists = this.lists
-      this.lists.push(new List('compeleted'))
+      this.lists.push(new List('Compeleted'))
     })
   }
 

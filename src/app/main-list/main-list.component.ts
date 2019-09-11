@@ -17,15 +17,17 @@ export class MainListComponent implements OnInit {
   main_list : List
   list : FormGroup
   title : FormControl
+  editing_mode : boolean
   
   on_submit(data) {
     this.listService.create_folder(data).subscribe( res => {
-      console.log(res)
+      // console.log(res)
     })
   }
   
 
   ngOnInit() {
+    this.editing_mode = false
     this.listService.current_list_title = "Daily Tasks"
     this.listService.is_done = false
     this.get_lists()
@@ -38,7 +40,7 @@ export class MainListComponent implements OnInit {
       title : this.title
     })
     this.taskService.task_deleted.subscribe(task => {
-      console.log(task);
+      // console.log(task);
       this.tasks.splice(this.tasks.indexOf(task), 1);
     })
     this.taskService.task_added.subscribe(task => {
@@ -61,17 +63,17 @@ export class MainListComponent implements OnInit {
     .subscribe(_lists => {
       this.lists = _lists
       this.listService.lists = this.lists
-      this.lists.push(new List('compeleted'))
+      this.lists.push(new List('Compeleted'))
     })
   }
 
   get_tasks_of_list(list : List){
-    console.log(list);
+    // console.log(list);
     this.listService.get_tasks_of_list(list)
     .subscribe(data => {
       this.tasks = data.filter(item => item.done === false)
-      console.log(data);
-      console.log(this.tasks);
+      // console.log(data);
+      // console.log(this.tasks);
     })
   }
 

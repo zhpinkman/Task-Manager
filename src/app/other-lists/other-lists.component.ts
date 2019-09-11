@@ -24,14 +24,14 @@ export class OtherListsComponent implements OnInit {
 
   ngOnInit() {
     this.listService.is_done = false
-    console.log("init");
+    // //console.log("init");
     this.listService.update_current_list()
     this.get_lists_and_tasks();
   }
 
   get_tasks() {
     this.listService.lists = this.lists
-    console.log(this.lists);
+    // //console.log(this.lists);
     let list = this.listService.get_list_from_lists()
     if (list === null)
       this.go_to_list('Daily Tasks')
@@ -40,12 +40,12 @@ export class OtherListsComponent implements OnInit {
   }
 
   get_tasks_of_list(list : List){
-    console.log(list);
+    //console.log(list);
     this.listService.get_tasks_of_list(list)
     .subscribe(data => {
       this.tasks = data.filter(items => items.done === false)
-      console.log(data);
-      console.log(this.tasks);
+      //console.log(data);
+      //console.log(this.tasks);
     })
   }
 
@@ -57,20 +57,20 @@ export class OtherListsComponent implements OnInit {
 
   
   on_submit(data) {
-    console.log(data);
+    //console.log(data);
     this.listService.create_folder(data).subscribe( res => {
-      console.log(res)
+      //console.log(res)
     })
   }
 
   constructor(public listService : ListServiceService, private taskService : TaskServiceService) {
-    console.log("constructor");
+    //console.log("constructor");
     this.title = new FormControl('')
     this.list = new FormGroup({
       title : this.title
     })
     this.taskService.task_deleted.subscribe(task => {
-      console.log(task);
+      //console.log(task);
       this.tasks.splice(this.tasks.indexOf(task), 1);
     })
     this.taskService.task_added.subscribe(task => {
@@ -78,7 +78,7 @@ export class OtherListsComponent implements OnInit {
     })
 
     this.listService.refresh_page.subscribe(data => {
-      console.log("has to be updated");
+      //console.log("has to be updated");
       this.get_lists_and_tasks();
     })
     this.editing_mode = false
@@ -94,7 +94,7 @@ export class OtherListsComponent implements OnInit {
     current_list.title = new_title
     this.listService.update_list(current_list)
     .subscribe(res => {
-      console.log("finaly finished");
+      //console.log("finaly finished");
       this.listService.current_list_title = new_title
       this.go_to_list(new_title)
     })
@@ -110,7 +110,7 @@ export class OtherListsComponent implements OnInit {
     this.listService.get_all_lists()
     .subscribe(_lists => {
       this.lists = _lists
-      console.log(this.lists);
+      //console.log(this.lists);
       this.lists.push(new List('Compeleted'))
       this.get_tasks()
     })
@@ -123,17 +123,17 @@ export class OtherListsComponent implements OnInit {
   }
 
   delete_list(){
-    console.log("starting deleting");
+    //console.log("starting deleting");
     this.tasks.forEach(task => {
       this.taskService.delete_task(task)
       .subscribe(res => {
-        console.log("deleted");
+        //console.log("deleted");
         this.taskService.delete_task_from_list(task)
       })
     });
     this.listService.delete_current_list()
     .subscribe(res => {
-      console.log("list deleted");
+      //console.log("list deleted");
       this.go_to_list('Daily Tasks')
     })
   }
