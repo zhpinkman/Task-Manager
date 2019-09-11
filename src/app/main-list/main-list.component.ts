@@ -19,9 +19,14 @@ export class MainListComponent implements OnInit {
   title : FormControl
   editing_mode : boolean
   
-  on_submit(data) {
-    this.listService.create_folder(data).subscribe( res => {
-      // console.log(res)
+  create_list(list) {
+    //console.log(data);
+    this.listService.create_folder(list).subscribe( res => {
+      //console.log(res)
+      this.lists.push(new List(list.title))
+      this.title.setValue("")
+      this.go_to_list(list.title)
+
     })
   }
   

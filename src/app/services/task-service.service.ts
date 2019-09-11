@@ -35,7 +35,7 @@ export class TaskServiceService {
   }
 
   delete_task_from_list(task : Task){
-    this.task_deleted.next()
+    this.task_deleted.next(task)
   }
 
   add_task_to_list(task : Task){

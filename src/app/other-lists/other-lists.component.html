@@ -24,7 +24,7 @@
           <a mat-list-item routerLink="." (click)="go_to_list(list.title); snav.close()" *ngFor="let list of lists">{{list.title}}</a>
           <form [formGroup]="list" class="new-list-form">
               <input class="new-list-input" formControlName="title" type="text" matInput placeholder="new list">
-              <mat-icon matSuffix (click)="on_submit(list.value)" >add</mat-icon>
+              <mat-icon matSuffix (click)="create_list(list.value); snav.close()" >add</mat-icon>
           </form>
         </mat-nav-list>
       </mat-sidenav>

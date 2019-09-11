@@ -56,10 +56,14 @@ export class OtherListsComponent implements OnInit {
   editing_mode : boolean
 
   
-  on_submit(data) {
+  create_list(list) {
     //console.log(data);
-    this.listService.create_folder(data).subscribe( res => {
+    this.listService.create_folder(list).subscribe( res => {
       //console.log(res)
+      this.lists.push(new List(list.title))
+      this.title.setValue("")
+      this.go_to_list(list.title)
+
     })
   }
 
@@ -71,6 +75,7 @@ export class OtherListsComponent implements OnInit {
     })
     this.taskService.task_deleted.subscribe(task => {
       //console.log(task);
+      // console.log(this.tasks.indexOf(task));
       this.tasks.splice(this.tasks.indexOf(task), 1);
     })
     this.taskService.task_added.subscribe(task => {
