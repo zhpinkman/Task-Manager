@@ -1,31 +1,31 @@
-<form [formGroup]="task_form">
-  <mat-form-field>
-    <input class="task-title" matInput formControlName="title" [(ngModel)]="task.title" value="{{this.task.title}}" placeholder="Title">
-  </mat-form-field>
-  <div mat-dialog-content>
-    <mat-form-field>
-      <input matInput formControlName="description" [(ngModel)]="task.description" value="{{task.description}}" placeholder="Description">
-    </mat-form-field>
-  </div>
-  <div class="date-options">
-    <mat-form-field class="date">
-      <input matInput formControlName="date" [matDatepicker]="picker" placeholder="Choose a date">
-      <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
-      <mat-datepicker #picker></mat-datepicker>
-    </mat-form-field>
-    <div class="task-options">
-      <div class="delete_icon" (click)="delete_task()">
-        <i class="fa fa-trash" aria-hidden="true"></i>
-      </div>
-      <div class="move-to-daily-icon" (click)="move_task_to_daily()">
-        <i class="fa fa-star" aria-hidden="true"></i>
-      </div>
-      <div class="done-icon" (click)="task_done()">
-        <i class="fa fa-check-circle" aria-hidden="true"></i>
-      </div>
-    </div>
-  </div>
+<div class="full-container"><form [formGroup]="task_form">
+<mat-form-field>
+<input class="task-title" matInput formControlName="title" [(ngModel)]="task.title" value="{{this.task.title}}" placeholder="Title">
+</mat-form-field>
+<div mat-dialog-content>
+<mat-form-field>
+<input matInput formControlName="description" [(ngModel)]="task.description" value="{{task.description}}" placeholder="Description">
+</mat-form-field>
+</div>
+<div class="date-options">
+<mat-form-field class="date">
+<input matInput formControlName="date" [matDatepicker]="picker" placeholder="Choose a date">
+<mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+<mat-datepicker #picker></mat-datepicker>
+</mat-form-field>
+<div class="task-options">
+<div class="delete_icon" (click)="delete_task()">
+<i class="fa fa-trash" aria-hidden="true"></i>
+</div>
+<div class="move-to-daily-icon" (click)="move_task_to_daily()">
+<i class="fa fa-star" aria-hidden="true"></i>
+</div>
+<div class="done-icon" (click)="task_done()">
+<i class="fa fa-check-circle" aria-hidden="true"></i>
+</div>
+</div>
+</div>
 </form>
 
-
+</div>
 

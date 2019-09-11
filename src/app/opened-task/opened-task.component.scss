@@ -3,6 +3,7 @@
   
     .mat-dialog-container {
       max-width: none;
+      background: #464646;
     }
 }
 
@@ -62,4 +63,8 @@ input{
   
   .date{
     width: 70%;
+  }
+
+  .full-container{
+    // background: #cccccc;
   }

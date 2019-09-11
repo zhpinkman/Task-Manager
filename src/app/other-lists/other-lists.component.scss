@@ -19,6 +19,8 @@
     align-items: center;
     justify-content: space-between;
     flex-direction: row;
+    background :#3a3a3a;
+    border-bottom: 1px solid white;
   }
   h1.example-app-name {
     // width: 40px;
@@ -32,6 +34,9 @@
     /* When the sidenav is not fixed, stretch the sidenav container to fill the available space. This
        causes `<mat-sidenav-content>` to act as our scrolling element for desktop layouts. */
     flex: 1;
+  }
+  mat-sidenav-content{
+    background: #3a3a3a
   }
   
   .example-is-mobile .example-sidenav-container {
@@ -106,6 +111,7 @@ mat-form-field {
 }
 
 .list-title-input{
+  padding-top : 2px;
   color: white;
   outline: none;
   background: none;

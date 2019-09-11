@@ -18,8 +18,6 @@ textarea{
 }
 
 mat-expansion-panel{
-  border-bottom-right-radius: 25px;
-  border-bottom-left-radius: 25px;
   width: 25%;
   margin: 0 auto
 }
@@ -34,6 +32,8 @@ mat-panel-description{
 // }
 
 .panel{
-  border-bottom-right-radius: 30px !important;
-  border-bottom-left-radius: 30px !important;
+  border-radius: 0 0 20px 20px !important;
+  // border-bottom-right-radius: 20px !important;
+  // border-bottom-left-radius: 20px !important;
+  // border-top-left-radius: 0px !important;
 }

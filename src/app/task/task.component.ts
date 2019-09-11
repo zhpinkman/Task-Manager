@@ -8,7 +8,8 @@ import { ListServiceService } from '../services/list-service.service';
 @Component({
   selector: 'app-task',
   templateUrl: './task.component.html',
-  styleUrls: ['./task.component.scss']
+  styleUrls: ['./task.component.scss'],
+  // encapsulation: ViewEncapsulation.None
 })
 export class TaskComponent implements OnInit {
   @Input('value')
