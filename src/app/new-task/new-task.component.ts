@@ -20,7 +20,6 @@ export class NewTaskComponent implements OnInit {
       description : this.description,
       date : this.date
     })
-    // console.log("I'm here");
   }
 
   task : Task
@@ -39,18 +38,13 @@ export class NewTaskComponent implements OnInit {
   }
 
   onSubmit(task) {
-    // console.log(task.date);
-    // console.log('Your order has been submitted', task);
     this.taskService.add_new_task(task).subscribe( res => {
-      // console.log(res);
-      // this.listService.refresh_page()
       this.taskService.add_task_to_list(task)
     })
     this.new_task.reset();
   }
 
   handle_space(event) {
-    // console.log("space");
     if (event.keyCode === 32) {
       event.stopPropagation();
     }

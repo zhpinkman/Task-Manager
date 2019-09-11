@@ -17,7 +17,6 @@ export class OpenedTaskComponent implements OnInit {
     public dialogRef: MatDialogRef<OpenedTaskComponent>,
     @Inject(MAT_DIALOG_DATA) public task: Task) {
       dialogRef.beforeClosed().subscribe(data => {
-        // console.log(data);
       })
       this.title = new FormControl('')
       this.description = new FormControl('')
@@ -30,7 +29,6 @@ export class OpenedTaskComponent implements OnInit {
     }
 
     ngOnDestroy(){
-      // console.log("destroyed");
       this.dialogRef.close(this.task_form.value)
     }
 
@@ -45,7 +43,6 @@ export class OpenedTaskComponent implements OnInit {
   }
 
   task_done(){
-    // console.log("task_done");
     this.task.done = true
     this.taskService.update_task(this.task)
     .subscribe(res => {
@@ -55,7 +52,6 @@ export class OpenedTaskComponent implements OnInit {
   }
 
   move_task_to_daily(){
-    // console.log("moved");
     this.listService.get_main_list()
     .subscribe(main_list => {
       this.task.list = main_list
@@ -68,7 +64,6 @@ export class OpenedTaskComponent implements OnInit {
   }
 
   delete_task(){
-    // console.log("delete");
     this.taskService.delete_task(this.task)
     .subscribe(res => {
       this.taskService.delete_task_from_list(this.task)

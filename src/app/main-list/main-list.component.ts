@@ -18,18 +18,19 @@ export class MainListComponent implements OnInit {
   list : FormGroup
   title : FormControl
   editing_mode : boolean
-  
-  create_list(list) {
-    //console.log(data);
-    this.listService.create_folder(list).subscribe( res => {
-      //console.log(res)
-      this.lists.push(new List(list.title))
-      this.title.setValue("")
-      this.go_to_list(list.title)
 
+  constructor(public listService : ListServiceService, private taskService : TaskServiceService) {
+    this.title = new FormControl('')
+    this.list = new FormGroup({
+      title : this.title
+    })
+    this.taskService.task_deleted.subscribe(task => {
+      this.tasks.splice(this.tasks.indexOf(task), 1);
+    })
+    this.taskService.task_added.subscribe(task => {
+      this.tasks.push(task)
     })
   }
-  
 
   ngOnInit() {
     this.editing_mode = false
@@ -38,20 +39,20 @@ export class MainListComponent implements OnInit {
     this.get_lists()
     this.get_main_list()
   }
+  
+  create_list(list) {
+    this.listService.create_folder(list).subscribe( res => {
+      this.lists.push(new List(list.title))
+      this.title.setValue("")
+      this.go_to_list(list.title)
 
-  constructor(public listService : ListServiceService, private taskService : TaskServiceService) {
-    this.title = new FormControl('')
-    this.list = new FormGroup({
-      title : this.title
-    })
-    this.taskService.task_deleted.subscribe(task => {
-      // console.log(task);
-      this.tasks.splice(this.tasks.indexOf(task), 1);
-    })
-    this.taskService.task_added.subscribe(task => {
-      this.tasks.push(task)
     })
   }
+  
+
+ 
+
+  
 
    get_main_list(){
      this.listService.get_main_list().subscribe(data =>
@@ -73,12 +74,9 @@ export class MainListComponent implements OnInit {
   }
 
   get_tasks_of_list(list : List){
-    // console.log(list);
     this.listService.get_tasks_of_list(list)
     .subscribe(data => {
       this.tasks = data.filter(item => item.done === false)
-      // console.log(data);
-      // console.log(this.tasks);
     })
   }
 

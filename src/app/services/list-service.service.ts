@@ -24,59 +24,10 @@ export class ListServiceService {
   get_all_lists() : Observable<List[]> {
     return this.http.get<List[]>('http://localhost:3000/api/lists')
   }
-
-  get_list(title : string) {
-    if (title == "Daily Tasks"){
-      this.is_done = false
-      this.router.navigate(['mainList'])
-      //console.log("daily list");
-    }
-    else if (title == "Compeleted"){
-      this.is_done = true
-      this.router.navigate(['done'])
-      //console.log('done list')
-    }
-    else{
-      this.is_done = false
-      //console.log(title)
-      this.router.navigate([title])
-      this.refresh_page.next()
-    }
-  }
-
-  get_list_from_lists() : List{
-    let list : List
-    //console.log(this.lists.length);
-    for (let i  = 0; i < this.lists.length; i++){
-      //console.log(this.lists[i].title + " " + this.current_list_title);
-      if (this.lists[i].title == this.current_list_title){
-        //console.log(this.lists[i]);
-        return this.lists[i]
-      } 
-    }
-    //console.log("nothing found");
-    return null
-  }
-
-  update_current_list() {
-    let x = this.router.url
-    let y = x.substr(1,x.length)
-    let i = y.indexOf('/')
-    if (i == -1){
-      i = y.length
-      this.current_list_title = y.substr(0, i)
-      //console.log(this.current_list_title);
-    }
-    else  
-      this.go_to_mainList()
-  }
-
   create_folder(data) : Observable<List> {
     let list = new List(data.title)
-    //console.log(list);
     return this.http.post<List>('http://localhost:3000/api/lists', list)
   }
-
   go_to_mainList() {
     this.router.navigate(['mainList'])
   }
@@ -95,5 +46,43 @@ export class ListServiceService {
 
   update_list(list : List) : Observable<any>{
     return this.http.put(`http://localhost:3000/api/lists/${list._id}`, list)
+  }
+
+  get_list(title : string) {
+    if (title == "Daily Tasks"){
+      this.is_done = false
+      this.router.navigate(['mainList'])
+    }
+    else if (title == "Compeleted"){
+      this.is_done = true
+      this.router.navigate(['done'])
+    }
+    else{
+      this.is_done = false
+      this.router.navigate([title])
+      this.refresh_page.next()
+    }
+  }
+
+  get_list_from_lists() : List{
+    let list : List
+    for (let i  = 0; i < this.lists.length; i++){
+      if (this.lists[i].title == this.current_list_title){
+        return this.lists[i]
+      } 
+    }
+    return null
+  }
+
+  update_current_list() {
+    let x = this.router.url
+    let y = x.substr(1,x.length)
+    let i = y.indexOf('/')
+    if (i == -1){
+      i = y.length
+      this.current_list_title = y.substr(0, i)
+    }
+    else  
+      this.go_to_mainList()
   }
 }
