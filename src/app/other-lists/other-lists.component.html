@@ -9,10 +9,10 @@
         <div class="list-title-edited" (click)="leave_edit_mode()" *ngIf="editing_mode == true">
           <i class="fa fa-check" aria-hidden="true"></i>
         </div>
-        <div class="edit-list" (click)="enter_edit_mode()" *ngIf="editing_mode == false">
+        <div class="edit-list" (click)="enter_edit_mode()" *ngIf="editing_mode == false" matTooltip="edit list title">
           <i class="fa fa-pencil" aria-hidden="true"></i>
         </div>
-        <div class="delete-list" (click)="delete_list()">
+        <div class="delete-list" (click)="delete_list()" matTooltip="delete list">
           <i class="fa fa-trash-o" aria-hidden="true"></i>
         </div>
       </div>

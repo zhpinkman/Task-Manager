@@ -34,3 +34,15 @@ mat-panel-description{
 input{
   width: 120px;
 }
+
+mat-icon{
+  border: 1px solid black;
+  border-radius: 20px;
+  justify-content: center;
+  display: flex;
+  align-items: center;
+  background: #d0d0d0;
+  &:hover{
+    background: #828282;
+  }
+}

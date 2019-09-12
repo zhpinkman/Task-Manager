@@ -11,13 +11,14 @@
                 <span>{{this.task.date | date : "M/d/yy"}}</span>
             </div>
             <div class="task-options" *ngIf="this.mouse_on_task">
-                <div class="delete_icon" (click)="delete_task()">
+                <div class="delete_icon" (click)="delete_task()" matTooltip="delete task">
                     <i class="fa fa-trash" aria-hidden="true"></i>
                 </div>
-                <div class="move-to-daily-icon" (click)="move_task_to_daily()" *ngIf="this.listService.current_list_title != 'Daily Tasks' && this.listService.current_list_title != 'Compeleted'">
+                <div class="move-to-daily-icon" (click)="move_task_to_daily()" 
+                *ngIf="this.listService.current_list_title != 'Daily Tasks' && this.listService.current_list_title != 'Compeleted'" matTooltip="move to daily tasks">
                     <i class="fa fa-star" aria-hidden="true"></i>
                 </div>
-                <div class="done-icon" (click)="task_done()" *ngIf="this.listService.current_list_title != 'Compeleted'">
+                <div class="done-icon" (click)="task_done()" *ngIf="this.listService.current_list_title != 'Compeleted'" matTooltip="task done">
                     <i class="fa fa-check-circle" aria-hidden="true"></i>
                 </div>
             </div>

@@ -25,6 +25,7 @@ import { MatNativeDateModule } from '@angular/material'
 import { NewTaskComponent } from './new-task/new-task.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import {MatInputModule} from '@angular/material/input';
+import {MatTooltipModule} from '@angular/material/tooltip';
 
 
 
@@ -45,6 +46,7 @@ import {MatInputModule} from '@angular/material/input';
     NewTaskComponent
   ],
   imports: [
+    MatTooltipModule,
     MatNativeDateModule,
     ReactiveFormsModule,
     MatDatepickerModule,
